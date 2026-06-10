@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Modern E-Commerce Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function quickPreview() {
+            const width = 800;
+            const height = 600;
+            const left = (window.screen.width - width) / 2;
+            const top = (window.screen.height - height) / 2;
+            const popup = window.open(
+                'index.html',
+                'StorePreview',
+                `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`
+            );
+            if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+                alert("⚠️ Pop-up Blocked! Please enable pop-ups in your browser settings (look for a blocked icon in your URL bar) to view the Quick Preview.");
+            }
+        }
+    </script>
+    <style>
+        .details-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .details-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .product-image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            min-height: 300px;
+            max-height: 500px;
+        }
+
+        .product-image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .product-image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-cat {
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            width: fit-content;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .product-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .product-price-tag {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+
+        .product-desc-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        @media (min-width: 480px) {
+            .action-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .back-nav {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .back-nav-btn:hover {
+            color: var(--primary-color);
+            background-color: #f1f5f9;
+        }
+
+        .loader-spinner {
+            text-align: center;
+            padding: 100px 0;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>Our Store</h1>
+            <button class="btn btn-secondary" id="preview-btn" onclick="quickPreview()" style="width: auto; display: flex; align-items: center; gap: 6px; padding: 8px 16px;">
+                🔍 Quick Preview
+            </button>
+        </div>
+    </header>
+
+    <main class="container" style="grid-template-columns: 1fr;">
+        <!-- Back Navigation Row -->
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="goBack()">
+                ← Back to Products
+            </button>
+        </div>
+
+        <!-- Details Dynamic Container -->
+        <div id="details-view">
+            <div class="loader-spinner">Loading product details...</div>
+        </div>
+    </main>
+
+    <script src="details.js"></script>
+</body>
+</html>
