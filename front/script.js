@@ -605,6 +605,8 @@ window.addEventListener("scroll", () => {
     scrollToTopBtn.addEventListener("click",
       handleScrollToTop
     );
+  }else{
+    scrollToTopBtn.style.display = "none";
   }
 });
 // @ handling the scroll to top btn
