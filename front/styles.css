@@ -165,8 +165,7 @@ select:focus {
   display: none;
   place-items: center;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 220ms ease;
+  /* transition: opacity 220ms ease; */
   z-index: 1000;
 }
 
