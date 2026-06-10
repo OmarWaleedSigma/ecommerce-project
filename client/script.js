@@ -236,116 +236,6 @@ const removeFromCart = async (cartItemId) => {
 // Initial Fetch
 fetchProducts();
 fetchCart();
-initializeWallet(); // Initialize wallet system
-// -------------------------------------------------------------------
-// WALLET & BALANCE SYSTEM
-// -------------------------------------------------------------------
-
-const WALLET_INCREASE_AMOUNT = 25; // Increases by $25
-const WALLET_INCREASE_INTERVAL = 1 * 60 * 60 * 1000; // Every 1 hour
-const MAX_WALLET_BALANCE = 99999999999999; // Max $100
-
-const initializeWallet = async () => {
-  try {
-    // Try to get or create wallet
-    let response = await fetch(`${API_URL}/wallet`);
-    let wallet;
-
-    if (!response.ok) {
-      // Create new wallet
-      wallet = {
-        id: 1,
-        balance: 20, // Start with $20
-        lastIncreaseTime: new Date().toISOString(),
-        totalConsumed: 0
-      };
-      
-      const createRes = await fetch(`${API_URL}/wallet`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(wallet)
-      });
-      wallet = await createRes.json();
-    } else {
-      wallet = await response.json();
-      // Handle array response from json-server
-      if (Array.isArray(wallet)) {
-        wallet = wallet[0];
-      }
-    }
-
-    // Update wallet balance over time
-    updateWalletBalance(wallet);
-    
-    // Check balance every minute
-    setInterval(() => updateWalletBalance(wallet), 60000);
-  } catch (error) {
-    console.error("Wallet init error:", error);
-  }
-};
-
-const updateWalletBalance = async (wallet) => {
-  try {
-    const now = new Date();
-    const lastIncrease = new Date(wallet.lastIncreaseTime);
-    const timeDiff = now - lastIncrease;
-
-    // If 24 hours have passed, increase balance
-    if (timeDiff >= WALLET_INCREASE_INTERVAL) {
-      const increaseCount = Math.floor(timeDiff / WALLET_INCREASE_INTERVAL);
-      let newBalance = wallet.balance + (WALLET_INCREASE_AMOUNT * increaseCount);
-      
-      // Cap at max balance
-      if (newBalance > MAX_WALLET_BALANCE) {
-        newBalance = MAX_WALLET_BALANCE;
-      }
-
-      wallet.balance = newBalance;
-      wallet.lastIncreaseTime = new Date().toISOString();
-
-      // Update in database
-      const response = await fetch(`${API_URL}/wallet/1`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(wallet)
-      });
-
-      if (response.ok) {
-        wallet = await response.json();
-      }
-    }
-
-    // Display wallet balance
-    displayWalletBalance(wallet);
-  } catch (error) {
-    console.error("Error updating wallet:", error);
-  }
-};
-
-const displayWalletBalance = (wallet) => {
-  const balanceEl = document.getElementById("wallet-balance");
-  const statusEl = document.getElementById("wallet-status");
-  
-  if (balanceEl) {
-    balanceEl.textContent = `$${wallet.balance.toFixed(2)}`;
-  }
-  
-  if (statusEl) {
-    if (wallet.balance >= MAX_WALLET_BALANCE) {
-      statusEl.textContent = "✓ Full";
-      statusEl.style.backgroundColor = "rgba(76, 175, 80, 0.3)";
-    } else {
-      const nextIncrease = new Date(wallet.lastIncreaseTime);
-      nextIncrease.setHours(nextIncrease.getHours() + 24);
-      const hoursLeft = Math.max(0, Math.ceil((nextIncrease - new Date()) / (1000 * 60 * 60)));
-      statusEl.textContent = `Next +$${WALLET_INCREASE_AMOUNT} in ${hoursLeft}h`;
-    }
-  }
-
-  // Store in session storage for checkout
-  sessionStorage.setItem('userWallet', JSON.stringify(wallet));
-};
-
 // -------------------------------------------------------------------
 // CHECKOUT FUNCTIONALITY
 // -------------------------------------------------------------------
@@ -402,31 +292,7 @@ document.getElementById("checkout-form").addEventListener("submit", async (e) =>
     // Calculate total
     const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     
-    // Get wallet and calculate payment
-    const walletData = sessionStorage.getItem('userWallet');
-    let amountPaid = 0;
-    let balanceAfter = 0;
-    
-    if (walletData) {
-      const wallet = JSON.parse(walletData);
-      amountPaid = Math.min(wallet.balance, total); // Pay up to available balance
-      balanceAfter = wallet.balance - amountPaid;
-      
-      // Update wallet in database
-      wallet.balance = balanceAfter;
-      wallet.totalConsumed = (wallet.totalConsumed || 0) + amountPaid;
-      
-      await fetch(`${API_URL}/wallet/1`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(wallet)
-      });
-
-      // Update session storage
-      sessionStorage.setItem('userWallet', JSON.stringify(wallet));
-    }
-    
-    // Create order object with payment info
+    // Create order object
     const order = {
       customerName: name,
       customerEmail: email,
@@ -434,8 +300,6 @@ document.getElementById("checkout-form").addEventListener("submit", async (e) =>
       customerAddress: address,
       items: cartItems,
       total: parseFloat(total.toFixed(2)),
-      amountPaid: parseFloat(amountPaid.toFixed(2)), // Amount paid from balance
-      amountRemaining: parseFloat((total - amountPaid).toFixed(2)), // Still owed
       status: "pending",
       createdAt: new Date().toISOString(),
       notes: ""
@@ -527,12 +391,6 @@ const viewMyOrders = async () => {
           ${itemsHtml}
         </div>
         <div class="order-total">Total: $${order.total.toFixed(2)}</div>
-        ${order.amountPaid ? `
-          <div style="background-color: #d4edda; padding: 8px; border-radius: 4px; margin: 10px 0; border-left: 4px solid #28a745;">
-            <p style="margin: 0; font-size: 12px;"><strong style="color: #155724;">💚 Paid from Balance: </strong>$${order.amountPaid.toFixed(2)}</p>
-            ${order.amountRemaining > 0 ? `<p style="margin: 5px 0 0 0; font-size: 12px; color: #856404;"><strong>Remaining Due: </strong>$${order.amountRemaining.toFixed(2)}</p>` : '<p style="margin: 5px 0 0 0; font-size: 12px; color: #155724;"><strong>✓ Fully Paid</strong></p>'}
-          </div>
-        ` : ''}
         
         ${order.notes ? `
           <div style="background-color: #fff3cd; padding: 10px; margin: 10px 0; border-left: 4px solid #ff9800; border-radius: 4px;">

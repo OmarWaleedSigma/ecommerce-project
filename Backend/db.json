@@ -274,34 +274,7 @@
       "email": "admin@test.com"
     }
   ],
-  "cart": [
-    {
-      "id": "fIl6F1VUCfc",
-      "title": "bag",
-      "price": "109.95",
-      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-      "rating": {
-        "rate": 3.9,
-        "count": 120
-      },
-      "quantity": 3
-    },
-    {
-      "id": "i_bAixntMgQ",
-      "title": "Mens Casual Premium Slim Fit T-Shirts ",
-      "price": 22.3,
-      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-      "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
-      "rating": {
-        "rate": 4.1,
-        "count": 259
-      },
-      "quantity": 3
-    }
-  ],
+  "cart": [],
   "orders": [
     {
       "customerName": "Ahmed Hassan",
@@ -451,7 +424,14 @@
       "createdAt": "2026-06-03T13:41:24.304Z",
       "notes": "send money for order so i deliver 2 u",
       "id": "v65CmqncQUM",
-      "updatedAt": "2026-06-03T13:44:13.684Z"
+      "updatedAt": "2026-06-03T13:44:13.684Z",
+      "replies": [
+        {
+          "text": "hkfgcyd",
+          "image": null,
+          "timestamp": "2026-06-10T16:14:23.140Z"
+        }
+      ]
     },
     {
       "customerName": "Ahmed Hassan",
@@ -664,6 +644,160 @@
       "notes": "",
       "id": "Yln6HVDNBU0",
       "updatedAt": "2026-06-10T14:27:36.213Z"
+    },
+    {
+      "customerName": "Ahmed Hassan",
+      "customerEmail": "morawaleed2017@gmail.com",
+      "customerPhone": "(012)-345-6789",
+      "customerAddress": "123 Main St, Springfield, IL 62704",
+      "items": [
+        {
+          "id": "fIl6F1VUCfc",
+          "title": "bag",
+          "price": "109.95",
+          "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+          "rating": {
+            "rate": 3.9,
+            "count": 120
+          },
+          "quantity": 3
+        },
+        {
+          "id": "i_bAixntMgQ",
+          "title": "Mens Casual Premium Slim Fit T-Shirts ",
+          "price": 22.3,
+          "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
+          "rating": {
+            "rate": 4.1,
+            "count": 259
+          },
+          "quantity": 3
+        }
+      ],
+      "total": 396.75,
+      "status": "delivered",
+      "createdAt": "2026-06-10T16:08:28.537Z",
+      "notes": "cgvghvdchvbd",
+      "id": "yhT1uvMwqKI",
+      "updatedAt": "2026-06-10T16:12:58.533Z"
+    },
+    {
+      "customerName": "Ahmed Hassan",
+      "customerEmail": "morawaleed2017@gmail.com",
+      "customerPhone": "(012)-345-6789",
+      "customerAddress": "123 Main St, Springfield, IL 62704",
+      "items": [
+        {
+          "id": "fJRni5ITgdY",
+          "title": "bag",
+          "price": "109.95",
+          "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+          "rating": {
+            "rate": 3.9,
+            "count": 120
+          },
+          "quantity": 4
+        },
+        {
+          "id": "SzAZqr41tgE",
+          "title": "Mens Casual Premium Slim Fit T-Shirts ",
+          "price": 22.3,
+          "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
+          "rating": {
+            "rate": 4.1,
+            "count": 259
+          },
+          "quantity": 1
+        },
+        {
+          "id": "7sEvb67wZaM",
+          "title": "Mens Cotton Jacket",
+          "price": 55.99,
+          "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png",
+          "rating": {
+            "rate": 4.7,
+            "count": 500
+          },
+          "quantity": 1
+        }
+      ],
+      "total": 518.09,
+      "status": "delivered",
+      "createdAt": "2026-06-10T16:09:18.103Z",
+      "notes": "",
+      "id": "NpgitmJ_x8I",
+      "updatedAt": "2026-06-10T16:13:13.692Z"
+    },
+    {
+      "customerName": "Ahmed Hassan",
+      "customerEmail": "morawaleed2017@gmail.com",
+      "customerPhone": "(012)-345-6789",
+      "customerAddress": "123 Main St, Springfield, IL 62704",
+      "items": [
+        {
+          "id": "-f6fg4d2Wy8",
+          "title": "bag",
+          "price": "109.95",
+          "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+          "rating": {
+            "rate": 3.9,
+            "count": 120
+          },
+          "quantity": 6
+        }
+      ],
+      "total": 659.7,
+      "status": "delivered",
+      "createdAt": "2026-06-10T16:10:00.559Z",
+      "notes": "",
+      "id": "8SM21TYsBzI",
+      "updatedAt": "2026-06-10T16:13:16.932Z"
+    },
+    {
+      "customerName": "Ahmed Hassan",
+      "customerEmail": "morawaleed2017@gmail.com",
+      "customerPhone": "(012)-345-6789",
+      "customerAddress": "123 Main St, Springfield, IL 62704",
+      "items": [
+        {
+          "id": "J9lvrDQtREE",
+          "title": "bag",
+          "price": "109.95",
+          "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+          "rating": {
+            "rate": 3.9,
+            "count": 120
+          },
+          "quantity": 14
+        }
+      ],
+      "total": 1539.3,
+      "status": "declined",
+      "createdAt": "2026-06-10T16:12:05.954Z",
+      "notes": "uifhccdyuhjcf",
+      "id": "Zr1m2hlfEHU",
+      "updatedAt": "2026-06-10T16:13:40.083Z",
+      "replies": [
+        {
+          "text": "why did u decline",
+          "image": null,
+          "timestamp": "2026-06-10T16:14:42.986Z"
+        }
+      ]
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
